@@ -215,6 +215,7 @@ class CakeLog {
 		if (!defined('LOG_ERR')) {
 			define('LOG_ERR', LOG_ERROR);
 		}
+        
 		$levels = array(
 			LOG_WARNING => 'warning',
 			LOG_NOTICE => 'notice',
@@ -223,19 +224,24 @@ class CakeLog {
 			LOG_ERR => 'error',
 			LOG_ERROR => 'error'
 		);
-
-		if (is_int($type) && isset($levels[$type])) {
-			$type = $levels[$type];
-		}
-		$self =& CakeLog::getInstance();
-		if (empty($self->_streams)) {
-			$self->_autoConfig();
-		}
-		$keys = array_keys($self->_streams);
-		foreach ($keys as $key) {
-			$logger =& $self->_streams[$key];
-			$logger->write($type, $message);
-		}
+        
+        $logLevel = Configure::read('log');
+        $writeLevel = is_numeric($logLevel) ? $logLevel : LOG_INFO;
+        
+        if($type <= $writeLevel) {
+            if (is_int($type) && isset($levels[$type])) {
+                $type = $levels[$type];
+            }
+            $self =& CakeLog::getInstance();
+            if (empty($self->_streams)) {
+                $self->_autoConfig();
+            }
+            $keys = array_keys($self->_streams);
+            foreach ($keys as $key) {
+                $logger =& $self->_streams[$key];
+                $logger->write($type, $message);
+            }
+        }
 		return true;
 	}
 
