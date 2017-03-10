@@ -1,6 +1,6 @@
 {
     "name": "atomjuice/cakephp",
-    "type": "cakephp",
+    "type": "cakephp-plugin",
     "require": {
         "composer/installers": "~1.0"
     },
