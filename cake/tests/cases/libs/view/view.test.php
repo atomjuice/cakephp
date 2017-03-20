@@ -82,7 +82,7 @@ class ViewPostsController extends Controller {
  * @package       cake
  * @subpackage    cake.tests.cases.libs.view
  */
-class ViewTestErrorHandler extends ErrorHandler {
+class ViewTestErrorHandler extends CakeErrorHandler {
 
 /**
  * stop method

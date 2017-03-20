@@ -125,7 +125,7 @@ class Object {
 	}
 
 /**
- * Stop execution of the current script.  Wraps exit() making 
+ * Stop execution of the current script.  Wraps exit() making
  * testing easier.
  *
  * @param $status see http://php.net/exit for values
@@ -156,7 +156,7 @@ class Object {
 	}
 
 /**
- * Allows setting of multiple properties of the object in a single line of code.  Will only set 
+ * Allows setting of multiple properties of the object in a single line of code.  Will only set
  * properties that are part of a class declaration.
  *
  * @param array $properties An associative array containing properties and corresponding values.
@@ -177,15 +177,15 @@ class Object {
 /**
  * Used to report user friendly errors.
  * If there is a file app/error.php or app/app_error.php this file will be loaded
- * error.php is the AppError class it should extend ErrorHandler class.
+ * error.php is the AppError class it should extend CakeErrorHandler class.
  *
- * @param string $method Method to be called in the error class (AppError or ErrorHandler classes)
+ * @param string $method Method to be called in the error class (AppError or CakeErrorHandler classes)
  * @param array $messages Message that is to be displayed by the error class
  * @return error message
  * @access public
  */
 	function cakeError($method, $messages = array()) {
-		if (!class_exists('ErrorHandler')) {
+		if (!class_exists('CakeErrorHandler')) {
 			App::import('Core', 'Error');
 
 			if (file_exists(APP . 'error.php')) {
@@ -198,7 +198,7 @@ class Object {
 		if (class_exists('AppError')) {
 			$error = new AppError($method, $messages);
 		} else {
-			$error = new ErrorHandler($method, $messages);
+			$error = new CakeErrorHandler($method, $messages);
 		}
 		return $error;
 	}

@@ -65,7 +65,7 @@ class CakeErrorController extends AppController {
  * @package       cake
  * @subpackage    cake.cake.libs
  */
-class ErrorHandler extends Object {
+class CakeErrorHandler extends Object {
 
 /**
  * Controller instance.
@@ -110,7 +110,7 @@ class ErrorHandler extends Object {
 		if ($method !== 'error') {
 			if (Configure::read('debug') == 0) {
 				$parentClass = get_parent_class($this);
-				if (strtolower($parentClass) != 'errorhandler') {
+				if (strtolower($parentClass) != 'cakeerrorhandler') {
 					$method = 'error404';
 				}
 				$parentMethods = array_map('strtolower', get_class_methods($parentClass));

@@ -210,7 +210,7 @@ class BlueberryController extends AppController {
  * @package       cake
  * @subpackage    cake.tests.cases.libs
  */
-class MyCustomErrorHandler extends ErrorHandler {
+class MyCustomErrorHandler extends CakeErrorHandler {
 
 /**
  * custom error message type.
@@ -238,7 +238,7 @@ class MyCustomErrorHandler extends ErrorHandler {
  * @package       cake
  * @subpackage    cake.tests.cases.libs
  */
-class TestErrorHandler extends ErrorHandler {
+class TestErrorHandler extends CakeErrorHandler {
 
 /**
  * stop method

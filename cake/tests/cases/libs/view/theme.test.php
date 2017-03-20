@@ -62,7 +62,7 @@ class ThemePostsController extends Controller {
  * @package       cake
  * @subpackage    cake.tests.cases.libs.view
  */
-class ThemeViewTestErrorHandler extends ErrorHandler {
+class ThemeViewTestErrorHandler extends CakeErrorHandler {
 
 /**
  * stop method
