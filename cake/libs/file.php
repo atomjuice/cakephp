@@ -350,6 +350,20 @@ class File extends Object {
 		return false;
 	}
 
+    /**
+     * Returns the full filename
+     *
+     * @return string The full filename
+     */
+	public function filename()
+    {
+        if ($this->name) {
+            return $this->name;
+        }
+        return false;
+    }
+
+
 /**
  * makes filename safe for saving
  *
