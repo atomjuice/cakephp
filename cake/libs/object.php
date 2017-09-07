@@ -185,20 +185,20 @@ class Object {
  * @access public
  */
 	function cakeError($method, $messages = array()) {
-		if (!class_exists('CakeErrorHandler')) {
-			App::import('Core', 'Error');
+		if (!class_exists('ErrorHandler')) {
+            App::import('Core', 'Error');
 
-			if (file_exists(APP . 'error.php')) {
-				include_once (APP . 'error.php');
-			} elseif (file_exists(APP . 'app_error.php')) {
-				include_once (APP . 'app_error.php');
-			}
+            if (file_exists(APP . 'error.php')) {
+                include_once (APP . 'error.php');
+            } elseif (file_exists(APP . 'app_error.php')) {
+                include_once (APP . 'app_error.php');
+            }
 		}
 
 		if (class_exists('AppError')) {
 			$error = new AppError($method, $messages);
 		} else {
-			$error = new CakeErrorHandler($method, $messages);
+			$error = new ErrorHandler($method, $messages);
 		}
 		return $error;
 	}
