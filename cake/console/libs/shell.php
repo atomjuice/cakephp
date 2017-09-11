@@ -253,11 +253,8 @@ class Shell extends Object {
 
 			foreach ($uses as $modelClass) {
 				list($plugin, $modelClass) = pluginSplit($modelClass, true);
-				if (PHP5) {
-					$this->{$modelClass} = ClassRegistry::init($plugin . $modelClass);
-				} else {
-					$this->{$modelClass} =& ClassRegistry::init($plugin . $modelClass);
-				}
+                $this->{$modelClass} = ClassRegistry::init($plugin . $modelClass);
+
 			}
 			return true;
 		}
@@ -294,23 +291,13 @@ class Shell extends Object {
 				}
 			}
 			$taskClassCheck = $taskClass;
-			if (!PHP5) {
-				$taskClassCheck = strtolower($taskClass);
-			}
+
 			if (ClassRegistry::isKeySet($taskClassCheck)) {
 				$this->taskNames[] = $taskName;
-				if (!PHP5) {
-					$this->{$taskName} =& ClassRegistry::getObject($taskClassCheck);
-				} else {
-					$this->{$taskName} = ClassRegistry::getObject($taskClassCheck);
-				}
+                $this->{$taskName} = ClassRegistry::getObject($taskClassCheck);
 			} else {
 				$this->taskNames[] = $taskName;
-				if (!PHP5) {
-					$this->{$taskName} =& new $taskClass($this->Dispatch);
-				} else {
-					$this->{$taskName} = new $taskClass($this->Dispatch);
-				}
+                $this->{$taskName} = new $taskClass($this->Dispatch);
 			}
 
 			if (!isset($this->{$taskName})) {
