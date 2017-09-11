@@ -190,14 +190,6 @@ class ShellDispatcher {
 			$this->_stop();
 		}
 
-		if (basename(__FILE__) !=  basename($this->args[0])) {
-			$this->stderr("\nCakePHP Console: ");
-			$this->stderr('Warning: the dispatcher may have been loaded incorrectly, which could lead to unexpected results...');
-			if ($this->getInput('Continue anyway?', array('y', 'n'), 'y') == 'n') {
-				$this->_stop();
-			}
-		}
-
 		$this->shiftArgs();
 	}
 
@@ -310,7 +302,7 @@ class ShellDispatcher {
 			$this->help();
 			return true;
 		}
-		
+
 		list($plugin, $shell) = pluginSplit($arg);
 		$this->shell = $shell;
 		$this->shellName = Inflector::camelize($shell);
